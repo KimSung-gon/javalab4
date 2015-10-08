@@ -1,15 +1,16 @@
-package kr.ac.embedded.kookmin.exception;
+package kr.ac.kookmin.exeption.transaction;
 
 class Bank {
-	private static final Exception Exception = null;
 	private int balance = 1000;
 	public void oneqTrade() {
-		tradeWithA();
-		tradeWithB();
-		tradeWithC();
-		
-		catch(Exception e){
-			System.out.println("거래중 에러발생");
+		try{
+			tradeWithA();
+			tradeWithB();
+			tradeWithC();
+			Exception ex = new Exception();
+			throw ex;
+		} catch (Exception e) {
+			System.out.println("거래중 에러 발생, 전체 취소");
 			cancelA();
 			cancelB();
 			cancelC();
@@ -22,7 +23,7 @@ class Bank {
 		int m = 100; // A계좌에서 출금할 금액
 		System.out.println("A 계좌에서 출금 - " + m);
 		balance -= m;
-		
+				
 	}
 	public void tradeWithB() {
 		int m = 200;
@@ -34,9 +35,9 @@ class Bank {
 		int m = 300;
 		System.out.println("C 계좌에서 출금 - " + m);
 		balance -= m;
-		if();
+		
 	}
-    public void cancelA() {
+        public void cancelA() {
 		System.out.println("A 계좌 거래 취소  ");
 		balance += 100;
 	}
@@ -49,3 +50,10 @@ class Bank {
 		balance += 300;
 	}
 }
+
+public class Test {
+    public static void main(String args[]) {
+    	Bank b = new Bank();
+    	b.oneqTrade();
+    }
+} 
